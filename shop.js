@@ -110,24 +110,19 @@ class GoodsList {
     }
 }
 
+// Однако конструктор класса basketGood выполнен неверно. Вызов super() - это вызов конструктора класса Good, в который необходимо передать 
+// все описанные в нем параметры. Если его вызвать правильно, то в конструкторе basketGood останется только инициализировать свойство amount. 
+// В таком виде как у вас, вызов super просто некорректный и лишний.
+
+
 // BasketGood - класс дочерний от Good, для хранения данных о товаре в корзине с дополнительным свойством:
 class BasketGood extends Good {
 // В конструктор данного класса в качестве параметра должен передаваться экземпляр класса Good (товар помещаемый в корзину), 
     constructor(currentGood, amount) {
 // значения свойств которого должны использоваться при вызове конструктора родительского класса super().
-            super(currentGood);
+            super(currentGood.id, currentGood.name, currentGood.description, currentGood.sizes, currentGood.price, currentGood.available);
             // количество товара в корзине
             this.amount = amount;
-            // Код товара
-            this.id = currentGood.id;
-            // Наименование
-            this.name = currentGood.name;
-            // массив возможных размеров
-            this.sizes = currentGood.sizes;
-            // цена товара
-            this.price = currentGood.price;
-            // Добавил только для метода removeUnavailable(). Можно было обойтись и искать в общем каталоге  good.available
-            this.available = currentGood.available
     }
 }
 
